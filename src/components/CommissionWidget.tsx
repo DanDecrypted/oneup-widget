@@ -53,7 +53,7 @@ const CommissionWidget = () => {
         <span className="title">Deal Commission</span>
         <div className="input-group">
           <label htmlFor="revenue">Revenue:</label>
-          <input type="number" id="revenue" onChange={onRevenueChange} />
+          <input type="number" id="revenue" onChange={onRevenueChange} maxLength={20} />
         </div>
       </div>
       <div className="body d-flex fd-row">
@@ -80,18 +80,20 @@ const CommissionWidget = () => {
         <div className="p-10">
           {commissionBands
             .filter(band => band.commission > 0)
-            .map(band => <>
+            .map(band => <div
+            key={`band_${(band.lowerBand || 0)}`}
+            style={{
+              paddingBottom: "10px"
+            }}>
               <p style={{
                 fontWeight: "bold"
               }}>
                 {CurrencyFormatter.RenderCurrency(band.lowerBand || 0)}{band.upperBand && <> → {CurrencyFormatter.RenderCurrency(band.upperBand)}</>}{!band.upperBand && <>+</>}
               </p>
-              <p style={{
-                paddingBottom: "10px"
-              }}>
+              <p>
                 {CurrencyFormatter.RenderCurrency(band.commission)} ({band.percentage*100}% of {CurrencyFormatter.RenderCurrency(band.chunk)})
               </p>
-            </>
+            </div>
           )}
           <p style={{
             fontWeight: "bold"
