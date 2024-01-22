@@ -13,7 +13,7 @@ export default class CurrencyFormatter {
     const units = ['', 'K', 'M', 'B', 'T', 'Q'];
 
     const findUnit = (currAmount: number, onUnit: number = 0): {amount: number, unit: string} => {
-      if (Math.trunc(currAmount / 1000) > 0 && onUnit < units.length) 
+      if (Math.trunc(currAmount / 1000) > 0 && onUnit < units.length - 1) 
         return findUnit(currAmount / 1000, onUnit + 1);
       
       return {
