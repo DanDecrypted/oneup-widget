@@ -1,0 +1,7 @@
+.commission-card {
+  min-width: 490px;
+}
+
+.commission-card .body {
+  justify-content: left;
+}
